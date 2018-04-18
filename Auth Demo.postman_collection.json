@@ -1,0 +1,172 @@
+{
+	"info": {
+		"name": "Auth Demo",
+		"_postman_id": "8b0cf264-605d-b4ee-06f4-99bd0b635b5d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET unprotected route /users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\":1,\n    \"name\":\"ztest1\",\n    \"number\":\"555555555\",\n    \"email\":\"zack@test.com\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"users"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST registeration ",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "demo@demo.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "devpass",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"users",
+						"register"
+					]
+				},
+				"description": "Post email and password to create a user"
+			},
+			"response": []
+		},
+		{
+			"name": "POST login ",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "demo@demo.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "devpass",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"users",
+						"login"
+					]
+				},
+				"description": "email and password login"
+			},
+			"response": []
+		},
+		{
+			"name": "GET protected route",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVhZDU3NWFiMDBlOTg0ZWNhYzg0OTZhZSIsInVzZXJuYW1lIjoiZGVtb0BkZW1vLmNvbSIsImlhdCI6MTUyMzkzOTI0OSwiZXhwIjo4MDU1Nzc5MjQ5fQ.VBctm46GbGNEYpBLMTskQADtM9jL4yBCroEXq62UYmI"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:5000/protected",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"protected"
+					]
+				},
+				"description": "Route that needs a auth token to get to.  Put in the token in the header under x-access-token. "
+			},
+			"response": []
+		},
+		{
+			"name": "GET protect route without a token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:5000/protected",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"protected"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
