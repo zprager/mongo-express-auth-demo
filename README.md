@@ -1,6 +1,6 @@
-# node-js-getting-started
+# mongo-express-auth-demo
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+A barebones user authentication Node.js app using [Express 4](http://expressjs.com/).
 
 This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
 
@@ -9,8 +9,8 @@ This application supports the [Getting Started with Node on Heroku](https://devc
 Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
 
 ```sh
-$ git clone git@github.com:heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
+$ git clone git@github.com:zprager/mongo-express-auth-demo.git # or clone your own fork
+$ cd mongo-express-auth-demo
 $ npm install
 $ npm start
 ```

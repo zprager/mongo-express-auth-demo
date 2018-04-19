@@ -33,12 +33,7 @@ userSchema.pre('save', function(next) {
 // Execute before each user.save() call
 userSchema.pre( 'save', function ( callback ) {
   var user = this;
-  // get the current date
-  var currentDate = new Date();
-
-  // change the updated_at field to current date
-  user.updated_at = currentDate;
-
+  
   // if created_at doesn't exist, add to that field
   if (!user.created_at)
     user.created_at = currentDate;
@@ -60,13 +55,7 @@ userSchema.pre( 'save', function ( callback ) {
 } );
 
 
-///method to verify password using bcrypt
-userSchema.methods.verifyPassword = function ( password, cb ) {
-  bcrypt.compare( password, this.password, function ( err, isMatch ) {
-    if ( err ) return cb( err );
-    cb( null, isMatch );
-  } );
-};
+
 
 // create the model for users and expose it to our app
 module.exports = mongoose.model('users', userSchema);

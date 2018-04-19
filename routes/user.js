@@ -140,7 +140,7 @@ router.post('/register', function(req, res) {
                 user.firstName = req.body.firstName || 'none';
                 user.lastName =  req.body.lastName || 'none';
                 user.email =     req.body.email;
-                user.password =  req.body.password
+                user.password =  req.body.password;
                 user.number = req.body.phoneNumber || 5555555555;
                 //user.gcmId = req.body.gcmId;
                 //user.source = req.body.source;
