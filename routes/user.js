@@ -9,10 +9,18 @@ var jwt = require('jsonwebtoken');
     res.send('Unprotected Route');
   });
 
+   router.post('/answers',function(req, res)
+   {
+     req.decoded; //{id:34342, username: zprager}
+     req.body.answers; //[array]
+     var query = { username: req.decoded.username };
+     User.findOneAndUpdate(query, { answers: req.body.answers }, options, callback)
+   });
+
   //with valid login, return token
   router.post('/login', function(req, res)
   {
-      console.log("body received", req.body);
+
       if (!req.body.email || !req.body.password) {
           // email address is absolutely necessary for user creation
           res.json({
@@ -27,7 +35,7 @@ var jwt = require('jsonwebtoken');
                email: req.body.email
               },
               function(err, user) {
-                  console.log('user found:  '+JSON.stringify(user));
+
 
                   if (err) {
                       res.status(204);
@@ -58,7 +66,7 @@ var jwt = require('jsonwebtoken');
 
                           if(isMatch)
                               {
-                                  let admin = false;
+                                  
                                   var token = jwt.sign(
                                       {
                                       "id":user._id,
@@ -81,7 +89,6 @@ var jwt = require('jsonwebtoken');
                   }else
                   {
                       res.status(200);
-                      console.log("***********user not found");
                       res.json({"message":"no email found"});
                       return;
                   }
@@ -92,7 +99,7 @@ var jwt = require('jsonwebtoken');
   });//end login
 
 router.post('/register', function(req, res) {
-    console.log('req body: ',req.body);
+
     if (!req.body.email || !req.body.password)
       {
         // email address is absolutely necessary for user creation
@@ -104,7 +111,7 @@ router.post('/register', function(req, res) {
         return;
       }
         // see if users exist with the given userName and/or emailAddress
-        console.log('email sent ', req.body.email);
+
         User.find(
           {
                 'email': req.body.email
@@ -136,14 +143,13 @@ router.post('/register', function(req, res) {
             } else {
                 // create the user with specified data
                 var user = new User();
-                console.log('create user: ');
+
                 user.firstName = req.body.firstName || 'none';
                 user.lastName =  req.body.lastName || 'none';
                 user.email =     req.body.email;
                 user.password =  req.body.password;
                 user.number = req.body.phoneNumber || 5555555555;
-                //user.gcmId = req.body.gcmId;
-                //user.source = req.body.source;
+
                 user.save(function(err) {
                     if (err) {
                         res.json({
@@ -163,10 +169,7 @@ router.post('/register', function(req, res) {
                     var token = jwt.sign(payload, config.jwt.secret, {
                         expiresIn: 14400*360
                     });
-                    //if you want to use cookies
-                    // res.cookie('accessToken', token, {
-                    //     'maxAge': 86400000
-                    // });
+
                     res.json({
                         success: true,
                         message: 'User added/created successfully',
