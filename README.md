@@ -6,7 +6,9 @@ This application supports the [Getting Started with Node on Heroku](https://devc
 
 ## Running Locally
 
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
+Run your mongo locally with 'mongod'
+
+Create a database called 'authdemo' if you want it to work right out of the box
 
 ```sh
 $ git clone git@github.com:zprager/mongo-express-auth-demo.git # or clone your own fork
@@ -14,6 +16,7 @@ $ cd mongo-express-auth-demo
 $ npm install
 $ npm start
 ```
+Use the 'Auth Demo.postman_collection.json' in root folder, and import it into PostMan.   It will seed your test collection.
 
 Your app should now be running on [localhost:5000](http://localhost:5000/).
 
@@ -24,9 +27,12 @@ $ heroku create
 $ git push heroku master
 $ heroku open
 ```
+
 or
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
+You will also have to set up your mongo database on Heroku and update your connection link. 
 
 ## Documentation
 
