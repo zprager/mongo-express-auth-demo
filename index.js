@@ -14,12 +14,17 @@ const async = require('async');
 
 var app = express();
 
+var cors = require("cors");
+const corsOptions = {
+  origin: "*",
+};
 
-console.log(config.dev_url);
+
+
 // Mongoose connection with mongodb
 mongoose.Promise = require('bluebird');
 
-//authdemo is the name of the db 
+//authdemo is the name of the db
 mongoose.connect("mongodb://localhost/authdemo")
   .then(() => { // if all is ok we will be here
     console.log('******************Start db working');
@@ -33,6 +38,7 @@ var User = require('./models/User');
   //run a chron every day to get the value of user's holdings
   //and then save it in the user model
 
+  app.use(cors(corsOptions));
   app.use(logger('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
@@ -44,21 +50,6 @@ var User = require('./models/User');
 
 
   app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
-
-  app.get('/home', function(req, res) {
-      res.render('pages/home.ejs');
-  });
-
-  app.get('/admin/register', function(req, res) {
-      res.render('pages/register.ejs');
-  });
-
-  app.get('/login', function(req, res) {
-      res.render('pages/login.ejs');
-  });
-  app.get('/logout', function(req, res) {
-      res.render('pages/logout.ejs');
-  });
 
   app.use('/users', users);
 
